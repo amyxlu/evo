@@ -1,6 +1,6 @@
 from typing import Dict, Optional, Union, Sequence
 import torch
-import tape
+# import tape
 import transformers
 import numpy as np
 import esm
@@ -208,25 +208,25 @@ class Vocab(object):
             append_eos=alphabet.append_eos,
         )
 
-    @classmethod
-    def from_tape_tokenizer(cls, tokenizer: tape.tokenizers.TAPETokenizer) -> "Vocab":
-        if "<unk>" in tokenizer.vocab:
-            unk_token: Optional[str] = "<unk>"
-        elif "X" in tokenizer.vocab:
-            unk_token = "X"
-        else:
-            unk_token = None
-
-        return cls(
-            tokens=tokenizer.vocab,
-            bos_token=tokenizer.start_token,
-            eos_token=tokenizer.stop_token,
-            unk_token=unk_token,
-            pad_token="<pad>",
-            mask_token=tokenizer.mask_token,
-            prepend_bos=True,
-            append_eos=True,
-        )
+#     @classmethod
+#     def from_tape_tokenizer(cls, tokenizer: tape.tokenizers.TAPETokenizer) -> "Vocab":
+#         if "<unk>" in tokenizer.vocab:
+#             unk_token: Optional[str] = "<unk>"
+#         elif "X" in tokenizer.vocab:
+#             unk_token = "X"
+#         else:
+#             unk_token = None
+# 
+#         return cls(
+#             tokens=tokenizer.vocab,
+#             bos_token=tokenizer.start_token,
+#             eos_token=tokenizer.stop_token,
+#             unk_token=unk_token,
+#             pad_token="<pad>",
+#             mask_token=tokenizer.mask_token,
+#             prepend_bos=True,
+#             append_eos=True,
+#         )
 
     @classmethod
     def from_huggingface_tokenizer(

@@ -534,11 +534,12 @@ class BatchBySequenceLength(torch.utils.data.Sampler):
         max_tokens: int,
         shuffle=True,
         seed=0,
+        trim_long_sequences: int = True
     ):
         super().__init__(dataset)
         indices = np.argsort(dataset.sizes)
         sizes = dataset.sizes[indices]
-        batches = batch_by_size(indices, sizes, max_tokens)
+        batches = batch_by_size(indices, sizes, max_tokens, trim_long_sequences)
 
         self.dataset = dataset
         self.max_tokens = max_tokens
